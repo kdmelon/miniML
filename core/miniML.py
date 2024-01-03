@@ -120,7 +120,10 @@ class MiniTrace():
         Detected events as 2d array.
     '''
     def __init__(self, data: np.ndarray | list=None, sampling_interval: float=1, y_unit: str='', filename: str='') -> None:
-        self.data = data
+        if len(data) < 2: #if data is nested then return first object (idk how else to write this)
+            self.data = data[0]
+        else:
+            self.data = data
         self.sampling = sampling_interval
         self.events = []
         self.y_unit = y_unit
